@@ -1,19 +1,16 @@
-import re
+def mySort(a):
+    if len(a) <= 1:
+        return a
+    
+    pivot = a[-1]
 
-line = input().strip()
+    left = [i for i in a if i < pivot]
+    right = [i for i in a if i > pivot]
 
-lowers = re.findall(r"[a-z]", line)
-lowers.sort()
+    return mySort(left) + [pivot] +  mySort(right)
 
-uppers = re.findall(r"[A-Z]", line)
-uppers.sort()
+    
 
-odds = re.findall(r"[1,3,5,7,9]", line)
-odds = list(map(int, odds))
-odds.sort()
-
-evens = re.findall(r"[0,2,4,6,8]", line)
-evens = list(map(int, evens))
-evens.sort()
-
-print(*(lowers + uppers + odds + evens), sep="")
+if __name__ == "__main__":
+    a = [3,2,1, 55, 32, 16, 78, 90, 54]
+    print(mySort(a))

@@ -1,49 +1,42 @@
-def mergeSort(a: list[int], left: int, right: int):
-    if right - left <= 1:
+def mergeSort(a):
+    if len(a) <= 1:
         return
     
-    mid = (left + right) // 2
+    mid = len(a) // 2
 
-    mergeSort(a, left, mid)
-    mergeSort(a, mid, right)
+    left = a[:mid]
+    right = a[mid:]
 
-    merge(a, left, mid, right)
-
-def merge(a, left, mid, right):
-    sL = mid - left
-    sR = right - mid
-
-    aL = a[left : mid]
-    aR = a[mid : right]
+    mergeSort(left)
+    mergeSort(right)
     
-    i = j  = 0
-    k = left
+    i = l = r = 0
 
-    while i < sL and j < sR:
-        if aL[i] < aR[j]:
-            a[k] = aL[i]
+    while l < len(left) and r < len(right):
+        if left[l] < right[r]:
+            a[i] = left[l]
             i += 1
+            l += 1
         else:
-            a[k] = aR[j]
-            j += 1 
-        k += 1
+            a[i] = right[r]
+            i += 1
+            r +=1 
 
-    while i < sL:
-        a[k] = aL[i]
+    while l < len(left):
+        a[i] = left[l]
         i += 1
-        k += 1
+        l += 1
     
-    while j < sR:
-        a[k] = aR[j]
-        j += 1
-        k += 1
-
-
-def main():
-    a1 = [2, 3, 1, 5, 4]
-    a2 = [5, 4, 3 ,2, 1, 0]
-    mergeSort(a2, 0, len(a2))
-    print(a2)
+    while r < len(right):
+        a[i] = right[r]
+        i += 1
+        r += 1
 
 if __name__ == "__main__":
-    main()
+    a1 = [2, 3, 1, 5, 4]
+    a2 = [15, 14, 13, 10, 12, 11]
+    
+    mergeSort(a1)
+    mergeSort(a2)
+    print(a1)
+    print(a2)
