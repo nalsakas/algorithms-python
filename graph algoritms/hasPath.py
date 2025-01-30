@@ -11,7 +11,6 @@ def hasPath(graph, src, dst):
     
     if src == dst:
         return True
-    
 
     for neighbor in graph[src]:
         if hasPath(graph, neighbor, dst) == True:

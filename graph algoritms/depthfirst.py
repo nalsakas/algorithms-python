@@ -32,10 +32,10 @@ def breadhFirstPrint(graph, source):
     while queue:
         current = queue.pop(0)
         if current not in visited:
+            visited.append(current)
+            print(current)
             for neighbor in graph[current]:
                 queue.append(neighbor)
-            print(current)
-            visited.append(current)
 
 
 #depthFirstPrint(graph=graph, source='a')
